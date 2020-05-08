@@ -1,0 +1,30 @@
+<a href="/dashboard" class="btn btn-success">Home</a>
+<a href="/leaderboard_winrate" class="btn btn-primary">Leaderboard (By Win Rate)</a>
+<a href="/leaderboard_wincount" class="btn btn-secondary">Leaderboard (By Win Count)</a>
+<h1 class="mt-2">Hardest Questions (Sorted by Loses)</h1>
+<table class="table">
+    <tr>
+        <th>Rank</th>
+        <th>Question</th>
+        <th>Category</th>
+        <th>Difficulty (by Author)</th>
+        <th>Loses</th>
+        <th>Times PLayed</th>
+        <th>Wrong Percentage</th>
+    </tr>
+    <% for(var i=0; i< question_rows.length; i++) { %>
+    <tr>
+        <td><%= i+1 %></td>
+        <td><%= question_rows[i].question %></td>
+        <td><%= question_rows[i].category %></td>
+        <td><%= question_rows[i].difficulty %></td>
+        <td><%= question_rows[i].wrong %></td>
+        <td><%= question_rows[i].right+question_rows[i].wrong %></td>
+        <% if(isNaN(((question_rows[i].wrong/(question_rows[i].right+question_rows[i].wrong))))) { %>
+            <td>-</td>
+        <% } else{ %>  
+            <td><%= ((question_rows[i].wrong/(question_rows[i].right+question_rows[i].wrong))*100).toFixed(2) %>%</td>
+        <% } %>
+    </tr>
+    <% } %>
+</table>
